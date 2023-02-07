@@ -36,7 +36,7 @@ export default {
                     tos: 'You must accept the Terms of Service'
                 };
 
-                const message = messages[ctx.rule.name] ? messages[ctx.rule.name] : `The field ${context.field} is invalid.`;
+                const message = messages[ctx.rule.name] ? messages[ctx.rule.name] : `The field ${ctx.field} is invalid.`;
 
                 return message;
             },

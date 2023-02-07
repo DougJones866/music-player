@@ -8,7 +8,6 @@
     {{ reg_alert_msg }}
   </div>
   <vee-form
-    
     :validation-schema="schema"
     @submit="register"
     :initial-values="userData"
@@ -108,6 +107,10 @@
 </template>
 
 <script>
+
+import { mapActions } from 'pinia';
+import useUserStore from "@/stores/user";
+
 export default {
   name: "registerForm",
   data() {
@@ -131,16 +134,36 @@ export default {
       reg_alert_msg: "Please wait! You account is bring created.",
     };
   },
+    mounted() {
+      console.log(this.userLoggedIn);
+    },
   methods: {
-    register(values) {
+    ...mapActions(useUserStore, {
+      createUser: "register",
+    }),
+    async register(values) {
       this.reg_show_alert = true;
       this.reg_in_submission = true;
       this.reg_alert_variant = "bg-blue-500";
       this.reg_alert_msg = "Please wait! You account is bring created.";
 
+      
+      try {
+        await this.createUser(values);
+      } catch (error) {
+        this.reg_in_submission = false;
+        this.reg_alert_variant = "bg-red-500";
+        this.reg_alert_msg =
+          "An unexpected error occured. Please try again later.";
+        return;
+      }
+
+      // console.log(this.userLoggedIn);
       this.reg_alert_variant = "bg-green-500";
       this.reg_alert_msg = "You account has been created";
-      console.log(values);
+      window.location.reload();
+      
+      
     },
   },
 };
