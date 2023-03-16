@@ -74,12 +74,14 @@
   <!-- Comments -->
   <ul class="container mx-auto">
     <li
-      class="p-6 bg-gray-50 border border-gray-200"
+      class="p-6 bg-gray-50 border border-gray-200 m-3"
       v-for="comment in sortedComments"
       :key="comment.docID"
     >
       <!-- Comment Author -->
       <div class="mb-5">
+        <!-- Placeholder Icon -->
+        <img src="@/assets/ryu.gif" class="h-10 w-10" />
         <div class="font-bold">{{ comment.name }}</div>
         <time class="text-xs">{{ comment.datePosted }}</time>
       </div>

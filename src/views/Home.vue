@@ -28,7 +28,7 @@
         <i class="fa fa-headphones-alt float-right text-green-400 text-xl"></i>
       </div>
       <!-- Playlist -->
-      <ol id="playlist">
+      <ol id="playlist" >
         <app-song-item v-for="song in songs" :key="song.docID" :song="song" />
       </ol>
       <!-- .. end Playlist -->
